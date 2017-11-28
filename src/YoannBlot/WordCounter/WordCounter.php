@@ -1,14 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace Evaneos\WordCounter;
+namespace YoannBlot\WordCounter;
 
 /**
  * Class WordCounter.
  *
- * @package Evaneos\WordCounter
+ * @package YoannBlot\WordCounter
  */
-class WordCounter {
+class WordCounter
+{
 
     /**
      * @var int default minimum length.
@@ -49,7 +50,8 @@ class WordCounter {
      * @param string $sContent
      * @param int $iMinLength
      */
-    public function __construct (string $sContent, int $iMinLength = self::DEFAULT_MIN_LENGTH) {
+    public function __construct(string $sContent, int $iMinLength = self::DEFAULT_MIN_LENGTH)
+    {
         $this->setContent($sContent);
         $this->setMinLength($iMinLength);
     }
@@ -57,7 +59,8 @@ class WordCounter {
     /**
      * @param string $sContent
      */
-    public function setContent (string $sContent): void {
+    public function setContent(string $sContent): void
+    {
         if (strlen($sContent) > 0) {
             $this->sContent = $sContent;
         }
@@ -67,14 +70,16 @@ class WordCounter {
     /**
      * Reset current word counter.
      */
-    private function reset (): void {
+    private function reset(): void
+    {
         $this->aWordCounts = null;
     }
 
     /**
      * @param int $iMinLength
      */
-    public function setMinLength (int $iMinLength): void {
+    public function setMinLength(int $iMinLength): void
+    {
         if ($iMinLength <= 0) {
             $iMinLength = static::DEFAULT_MIN_LENGTH;
         }
@@ -87,7 +92,8 @@ class WordCounter {
      *
      * @return array[] word counts.
      */
-    public function getWordCounts (): array {
+    public function getWordCounts(): array
+    {
         $this->parse();
 
         return $this->aWordCounts;
@@ -96,7 +102,8 @@ class WordCounter {
     /**
      * Parse current WordCounter.
      */
-    private function parse (): void {
+    private function parse(): void
+    {
         // don't parse twice same contents
         if (null === $this->aWordCounts) {
             // step 1 : clean content, remove words less than minimum
@@ -108,7 +115,7 @@ class WordCounter {
             $this->aWordCounts = [];
             foreach (array_count_values($aWords) as $sWord => $iCount) {
                 if (mb_strlen($sWord) >= $this->iMinLength) {
-                    $this->aWordCounts [ $sWord ] = $iCount;
+                    $this->aWordCounts [$sWord] = $iCount;
                 }
             }
 

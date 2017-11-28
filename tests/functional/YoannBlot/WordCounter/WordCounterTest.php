@@ -1,17 +1,18 @@
 <?php
 declare(strict_types=1);
 
-namespace functional\Evaneos\WordCounter;
+namespace functional\YoannBlot\WordCounter;
 
-use Evaneos\WordCounter\WordCounter;
 use PHPUnit\Framework\TestCase;
+use YoannBlot\WordCounter\WordCounter;
 
 /**
  * Class WordCounterTest.
  *
- * @package Evaneos\WordCounter
+ * @package YoannBlot\WordCounter
  */
-class WordCounterTest extends TestCase {
+class WordCounterTest extends TestCase
+{
 
     /**
      * @var WordCounter word counter.
@@ -25,7 +26,8 @@ class WordCounterTest extends TestCase {
      *
      * @param string $sFileName file to parse.
      */
-    public function testWordsCount (string $sFileName): void {
+    public function testWordsCount(string $sFileName): void
+    {
         $sFilePath = __DIR__ . DIRECTORY_SEPARATOR . 'Resources' . DIRECTORY_SEPARATOR . $sFileName;
         static::assertFileExists($sFilePath);
 
@@ -49,7 +51,7 @@ class WordCounterTest extends TestCase {
         // check all values
         foreach ($aOutput as $sWord => $iCount) {
             static::assertArrayHasKey($sWord, $aExpectedOutput);
-            static::assertEquals($aExpectedOutput[ $sWord ], $iCount);
+            static::assertEquals($aExpectedOutput[$sWord], $iCount);
         }
     }
 
@@ -60,7 +62,8 @@ class WordCounterTest extends TestCase {
      *
      * @return array word counts.
      */
-    private function countWords (string $sContent): array {
+    private function countWords(string $sContent): array
+    {
         if (null === $this->oWordCounter) {
             $this->oWordCounter = new WordCounter($sContent, WordCounter::DEFAULT_MIN_LENGTH);
         } else {
@@ -73,9 +76,10 @@ class WordCounterTest extends TestCase {
     /**
      * @return array list of all files to parse and test.
      */
-    public function jsonFilesProvider (): array {
+    public function jsonFilesProvider(): array
+    {
         return [
-            'french'  => ['french.json'],
+            'french' => ['french.json'],
             'russian' => ['russian.json'],
             'swedish' => ['swedish.json']
         ];

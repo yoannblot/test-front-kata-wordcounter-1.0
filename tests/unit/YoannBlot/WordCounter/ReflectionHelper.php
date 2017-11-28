@@ -1,14 +1,15 @@
 <?php
 declare(strict_types=1);
 
-namespace Evaneos\WordCounter;
+namespace YoannBlot\WordCounter;
 
 /**
  * Class ReflectionHelper.
  *
- * @package Evaneos\WordCounter
+ * @package YoannBlot\WordCounter
  */
-abstract class ReflectionHelper {
+abstract class ReflectionHelper
+{
 
     /**
      * Get property value of given object.
@@ -18,7 +19,8 @@ abstract class ReflectionHelper {
      *
      * @return mixed property value.
      */
-    public static function getProperty ($oObject, string $sPropertyName) {
+    public static function getProperty($oObject, string $sPropertyName)
+    {
         $oReflection = new \ReflectionClass($oObject);
         $oProperty = $oReflection->getProperty($sPropertyName);
         $oProperty->setAccessible(true);
